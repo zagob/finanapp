@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AccountPerson {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  password  String
+  image     String?
+  createdAt DateTime @default(now())
+
+  accountBank         AccountBank[]
+  transactions        Transactions[]
+  AccountTokens       AccountTokens[]
+  CategoryTransaction CategoryTransaction[]
+}
+
+model AccountBank {
+  id        String   @id @default(uuid())
+  bank      String
+  name      String
+  quantity  Decimal  @db.Money
+  createdAt DateTime @default(now())
+
+  idPerson String
+  account  AccountPerson @relation(fields: [idPerson], references: [id])
+
+  Transactions Transactions[]
+}
+
+model CategoryTransaction {
+  id   String @id @default(uuid())
+  name String
+  type String
+
+  idPerson String
+  person   AccountPerson @relation(fields: [idPerson], references: [id])
+
+  Transactions Transactions[]
+}
+
+enum typeTransaction {
+  income
+  outcome
+}
+
+model Transactions {
+  id              String          @id @default(uuid())
+  name            String
+  quantity        Decimal         @db.Money
+  isPaid          Boolean         @default(false)
+  type            typeTransaction
+  automaticCredit Boolean         @default(false)
+  date            DateTime
+  createdAt       DateTime        @default(now())
+
+  idPerson      String
+  accountPerson AccountPerson @relation(fields: [idPerson], references: [id])
+
+  idBank      String
+  accountBank AccountBank @relation(fields: [idBank], references: [id])
+
+  idCategoryTransaction String?
+  categoryTransaction   CategoryTransaction? @relation(fields: [idCategoryTransaction], references: [id])
+}
+
+model AccountTokens {
+  id            String @id @default(uuid())
+  refresh_token String
+
+  idPerson      String
+  accountPerson AccountPerson @relation(fields: [idPerson], references: [id])
+
+  expiresDate DateTime
+  createdAt   DateTime @default(now())
+}

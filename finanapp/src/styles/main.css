@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-blue-900;
+}
+
+.formatText {
+  @apply text-white;
+}
+
+/* #123691 */
+/* #123691 */
+/* #143DA3 */
+/* #294FAB */
+/* #3C5FB3 */
+/* #4E6EBA */
+/* #5E7BC0 */

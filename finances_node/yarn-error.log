@@ -1,0 +1,62 @@
+Arguments: 
+  /home/matheus/.nvm/versions/node/v16.14.0/bin/node /usr/bin/yarn add @types/express-async-errors -D
+
+PATH: 
+  /home/matheus/.bun/bin:/home/matheus/.bun/bin:/home/matheus/.nvm/versions/node/v16.14.0/bin:/home/matheus/.local/share/zinit/polaris/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/matheus/android-studio/bin:/home/matheus/Android/Sdk/emulator:/home/matheus/Android/Sdk/tools:/home/matheus/Android/Sdk/tools/bin:/home/matheus/Android/Sdk/platform-tools:/home/matheus/android-studio/bin:/home/matheus/Android/Sdk/emulator:/home/matheus/Android/Sdk/tools:/home/matheus/Android/Sdk/tools/bin:/home/matheus/Android/Sdk/platform-tools
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.14.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@types%2fexpress-async-errors: Not found
+      at Request.params.callback [as _callback] (/usr/lib/node_modules/yarn/lib/cli.js:67029:18)
+      at Request.self.callback (/usr/lib/node_modules/yarn/lib/cli.js:140883:22)
+      at Request.emit (node:events:520:28)
+      at Request.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:141855:10)
+      at Request.emit (node:events:520:28)
+      at IncomingMessage.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:141777:12)
+      at Object.onceWrapper (node:events:639:28)
+      at IncomingMessage.emit (node:events:532:35)
+      at endReadableNT (node:internal/streams/readable:1346:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+npm manifest: 
+  {
+    "name": "finances_node",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/app.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "@prisma/client": "^4.3.1",
+      "cors": "^2.8.5",
+      "express": "^4.18.1",
+      "express-async-errors": "^3.1.1",
+      "reflect-metadata": "^0.1.13",
+      "tsyringe": "^4.7.0"
+    },
+    "devDependencies": {
+      "@types/express": "^4.17.14",
+      "@types/node": "^18.7.18",
+      "prisma": "^4.3.1",
+      "ts-node-dev": "^2.0.0",
+      "typescript": "^4.8.3"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

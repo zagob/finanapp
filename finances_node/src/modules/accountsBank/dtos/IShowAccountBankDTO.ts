@@ -1,0 +1,3 @@
+interface IShowAccountsBankDTO {}
+
+export { IShowAccountsBankDTO };
