@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { NavbarAside } from "../components/NavbarAside";
+import NavbarAside from "../components/NavbarAside";
 
 interface DefaultLayoutProps {
   children: ReactNode;

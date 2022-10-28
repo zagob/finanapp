@@ -1,37 +1,69 @@
-import { Bank } from "phosphor-react";
+import {
+  ArrowSquareDown,
+  ArrowSquareUp,
+  Bank,
+  DotsThreeVertical,
+  Money,
+  TrendDown,
+  TrendUp,
+} from "phosphor-react";
+import { formatNumberPrice } from "../utils/formatNumberPrice";
 
-interface CardValues {
-  title: string;
-  sald: string;
-  color: "GREEN" | "RED" | "DEFAULT";
-  accountBank?: boolean;
+interface CardValuesProps {
+  type: "TOTAL" | "INCOMES" | "OUTCOMES";
+  total: number;
 }
 
-export function CardValues({
-  title,
-  accountBank,
-  color = "DEFAULT",
-  sald,
-}: CardValues) {
+export function CardValues({ type, total }: CardValuesProps) {
   return (
-    <div
-      className={`${
-        color === "DEFAULT"
-          ? "bg-blue-700"
-          : color === "GREEN"
-          ? "bg-green-700"
-          : "bg-red-800"
-      } w-[200px] h-[120px] px-4 py-2 rounded-md shadow-xl flex flex-col justify-center gap-4`}
-    >
-      <div className="flex items-center gap-2">
-        <Bank size={26} color="#fff" />
-        <h2 className="text-gray-100 text-lg">{title}</h2>
-      </div>
+    <div className="col-span-4 rounded-xl bg-blue-800 shadow-lg p-6 flex flex-col gap-4">
+      <div className="flex justify-between items-center">
+        {type === "TOTAL" && <Bank size={32} className="text-gray-200" />}
+        {type === "INCOMES" && (
+          <ArrowSquareUp size={32} className="text-gray-300" />
+        )}
+        {type === "OUTCOMES" && (
+          <ArrowSquareDown size={32} className="text-gray-300" />
+        )}
 
-      <div className="flex flex-col">
-        <span className="text-gray-100 text-xl">R${sald}</span>
-        {accountBank && (
-          <span className="text-sm text-gray-400">Account bank</span>
+        <DotsThreeVertical size={32} className="text-gray-200" />
+      </div>
+      <div className="flex justify-between items-end">
+        <div className="flex flex-col ">
+          <span className="text-gray-400 text-sm">
+            {type === "TOTAL" && "Valor total"}
+            {type === "INCOMES" && "Entradas"}
+            {type === "OUTCOMES" && "Saídas"}
+          </span>
+          <h4 className="text-gray-100 text-2xl font-bold">
+            {formatNumberPrice(total)}
+          </h4>
+        </div>
+
+        {type === "TOTAL" && (
+          <div
+            className={`${
+              total < 0 ? "bg-red-500" : "bg-green-500"
+            } rounded-md p-1`}
+          >
+            {total < 0 ? (
+              <TrendDown size={26} className="text-gray-100" />
+            ) : (
+              <TrendUp size={26} className="text-gray-100" />
+            )}
+          </div>
+        )}
+
+        {type === "INCOMES" && (
+          <div className="bg-green-500 rounded-md p-1">
+            <TrendUp size={26} className="text-gray-100" />
+          </div>
+        )}
+
+        {type === "OUTCOMES" && (
+          <div className="bg-red-500 rounded-md p-1">
+            <TrendDown size={26} className="text-gray-100" />
+          </div>
         )}
       </div>
     </div>
